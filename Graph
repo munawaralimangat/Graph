@@ -1,0 +1,39 @@
+class CompleteGraph {
+  constructor(numVertices) {
+    this.numVertices = numVertices;
+    this.adjMatrix = [];
+
+    for (let i = 0; i < numVertices; i++) {
+      this.adjMatrix[i] = [];
+      for (let j = 0; j < numVertices; j++) {
+        // Set all edges to 1 to represent a complete graph
+        this.adjMatrix[i][j] = 1;
+      }
+    }
+  }
+
+  // Function to add an edge between two vertices
+  addEdge(vertex1, vertex2) {
+    if (vertex1 >= 0 && vertex1 < this.numVertices && vertex2 >= 0 && vertex2 < this.numVertices) {
+      this.adjMatrix[vertex1][vertex2] = 1;
+      this.adjMatrix[vertex2][vertex1] = 1;
+    }
+  }
+
+  // Function to print the adjacency matrix
+  printGraph() {
+    for (let i = 0; i < this.numVertices; i++) {
+      console.log(this.adjMatrix[i].join(' '));
+    }
+  }
+}
+
+// Example usage:
+const numVertices = 4;
+const graph = new CompleteGraph(numVertices);
+
+// Adding an edge between vertex 0 and vertex 2
+graph.addEdge(0, 2);
+
+// Printing the adjacency matrix
+graph.printGraph();
